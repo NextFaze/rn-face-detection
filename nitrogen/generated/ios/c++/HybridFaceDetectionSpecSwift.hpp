@@ -12,13 +12,19 @@
 // Forward declaration of `HybridFaceDetectionSpec_cxx` to properly resolve imports.
 namespace NitroRnFaceDetection { class HybridFaceDetectionSpec_cxx; }
 
+// Forward declaration of `DetectedFace` to properly resolve imports.
+namespace margelo::nitro::rnfacedetection { struct DetectedFace; }
+// Forward declaration of `BoundingBox` to properly resolve imports.
+namespace margelo::nitro::rnfacedetection { struct BoundingBox; }
 // Forward declaration of `Keypoint` to properly resolve imports.
 namespace margelo::nitro::rnfacedetection { struct Keypoint; }
 // Forward declaration of `HybridFrameSpec` to properly resolve imports.
 namespace margelo::nitro::camera { class HybridFrameSpec; }
 
-#include "Keypoint.hpp"
+#include "DetectedFace.hpp"
 #include <vector>
+#include "BoundingBox.hpp"
+#include "Keypoint.hpp"
 #include <memory>
 #include <VisionCamera/HybridFrameSpec.hpp>
 
@@ -72,7 +78,7 @@ namespace margelo::nitro::rnfacedetection {
 
   public:
     // Methods
-    inline std::vector<std::vector<Keypoint>> call(const std::shared_ptr<margelo::nitro::camera::HybridFrameSpec>& frame) override {
+    inline std::vector<DetectedFace> call(const std::shared_ptr<margelo::nitro::camera::HybridFrameSpec>& frame) override {
       auto __result = _swiftPart.call(frame);
       if (__result.hasError()) [[unlikely]] {
         std::rethrow_exception(__result.error());

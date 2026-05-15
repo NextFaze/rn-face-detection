@@ -8,6 +8,10 @@
 #pragma once
 
 // Forward declarations of C++ defined types
+// Forward declaration of `BoundingBox` to properly resolve imports.
+namespace margelo::nitro::rnfacedetection { struct BoundingBox; }
+// Forward declaration of `DetectedFace` to properly resolve imports.
+namespace margelo::nitro::rnfacedetection { struct DetectedFace; }
 // Forward declaration of `HybridFaceDetectionSpec` to properly resolve imports.
 namespace margelo::nitro::rnfacedetection { class HybridFaceDetectionSpec; }
 // Forward declaration of `HybridFrameSpec` to properly resolve imports.
@@ -22,6 +26,8 @@ namespace NitroRnFaceDetection { class HybridFaceDetectionSpec_cxx; }
 namespace VisionCamera { class HybridFrameSpec_cxx; }
 
 // Include C++ defined types
+#include "BoundingBox.hpp"
+#include "DetectedFace.hpp"
 #include "HybridFaceDetectionSpec.hpp"
 #include "Keypoint.hpp"
 #include <NitroModules/Result.hpp>
@@ -47,13 +53,13 @@ namespace margelo::nitro::rnfacedetection::bridge::swift {
     return vector;
   }
   
-  // pragma MARK: std::vector<std::vector<Keypoint>>
+  // pragma MARK: std::vector<DetectedFace>
   /**
-   * Specialized version of `std::vector<std::vector<Keypoint>>`.
+   * Specialized version of `std::vector<DetectedFace>`.
    */
-  using std__vector_std__vector_Keypoint__ = std::vector<std::vector<Keypoint>>;
-  inline std::vector<std::vector<Keypoint>> create_std__vector_std__vector_Keypoint__(size_t size) noexcept {
-    std::vector<std::vector<Keypoint>> vector;
+  using std__vector_DetectedFace_ = std::vector<DetectedFace>;
+  inline std::vector<DetectedFace> create_std__vector_DetectedFace_(size_t size) noexcept {
+    std::vector<DetectedFace> vector;
     vector.reserve(size);
     return vector;
   }
@@ -82,13 +88,13 @@ namespace margelo::nitro::rnfacedetection::bridge::swift {
   using std__weak_ptr_HybridFaceDetectionSpec_ = std::weak_ptr<HybridFaceDetectionSpec>;
   inline std__weak_ptr_HybridFaceDetectionSpec_ weakify_std__shared_ptr_HybridFaceDetectionSpec_(const std::shared_ptr<HybridFaceDetectionSpec>& strong) noexcept { return strong; }
   
-  // pragma MARK: Result<std::vector<std::vector<Keypoint>>>
-  using Result_std__vector_std__vector_Keypoint___ = Result<std::vector<std::vector<Keypoint>>>;
-  inline Result_std__vector_std__vector_Keypoint___ create_Result_std__vector_std__vector_Keypoint___(const std::vector<std::vector<Keypoint>>& value) noexcept {
-    return Result<std::vector<std::vector<Keypoint>>>::withValue(value);
+  // pragma MARK: Result<std::vector<DetectedFace>>
+  using Result_std__vector_DetectedFace__ = Result<std::vector<DetectedFace>>;
+  inline Result_std__vector_DetectedFace__ create_Result_std__vector_DetectedFace__(const std::vector<DetectedFace>& value) noexcept {
+    return Result<std::vector<DetectedFace>>::withValue(value);
   }
-  inline Result_std__vector_std__vector_Keypoint___ create_Result_std__vector_std__vector_Keypoint___(const std::exception_ptr& error) noexcept {
-    return Result<std::vector<std::vector<Keypoint>>>::withError(error);
+  inline Result_std__vector_DetectedFace__ create_Result_std__vector_DetectedFace__(const std::exception_ptr& error) noexcept {
+    return Result<std::vector<DetectedFace>>::withError(error);
   }
 
 } // namespace margelo::nitro::rnfacedetection::bridge::swift

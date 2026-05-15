@@ -1,0 +1,17 @@
+{
+  "expo": {
+    "name": "rn-face-detection-example-app",
+    "slug": "rn-face-detection-example-app",
+    "version": "1.0.0",
+    "android": {
+      "package": "com.anonymous.rnfacedetectionexampleapp"
+    },
+    "ios": {
+      "bundleIdentifier": "com.anonymous.rnfacedetectionexampleapp",
+      "infoPlist": {
+        "NSCameraUsageDescription": "$(PRODUCT_NAME) needs access to your Camera to capture photos and videos.",
+        "NSMicrophoneUsageDescription": "$(PRODUCT_NAME) needs access to your Microphone to record audio for video recordings."
+      }
+    }
+  }
+}

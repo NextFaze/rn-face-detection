@@ -1,6 +1,9 @@
 {
   "name": "rn-face-detection",
   "version": "0.0.1",
+  "workspaces": [
+    "example-app"
+  ],
   "description": "rn-face-detection",
   "main": "lib/index",
   "module": "lib/index",
@@ -63,8 +66,8 @@
     "eslint-plugin-prettier": "^5.2.1",
     "nitrogen": "*",
     "prettier": "^3.3.3",
-    "react": "19.2.0",
-    "react-native": "0.83.0",
+    "react": "19.1.0",
+    "react-native": "0.81.5",
     "react-native-nitro-modules": "*",
     "typescript": "^5.8.3"
   },

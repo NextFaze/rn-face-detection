@@ -54,7 +54,7 @@ namespace margelo::nitro::rnfacedetection {
 
   public:
     // Methods
-    std::vector<std::vector<Keypoint>> call(const std::shared_ptr<margelo::nitro::camera::HybridFrameSpec>& frame) override;
+    std::vector<DetectedFace> call(const std::shared_ptr<margelo::nitro::camera::HybridFrameSpec>& frame) override;
 
   private:
     jni::global_ref<JHybridFaceDetectionSpec::JavaPart> _javaPart;

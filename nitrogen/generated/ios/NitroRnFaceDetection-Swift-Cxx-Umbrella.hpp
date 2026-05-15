@@ -8,6 +8,10 @@
 #pragma once
 
 // Forward declarations of C++ defined types
+// Forward declaration of `BoundingBox` to properly resolve imports.
+namespace margelo::nitro::rnfacedetection { struct BoundingBox; }
+// Forward declaration of `DetectedFace` to properly resolve imports.
+namespace margelo::nitro::rnfacedetection { struct DetectedFace; }
 // Forward declaration of `HybridFaceDetectionSpec` to properly resolve imports.
 namespace margelo::nitro::rnfacedetection { class HybridFaceDetectionSpec; }
 // Forward declaration of `HybridFrameSpec` to properly resolve imports.
@@ -16,6 +20,8 @@ namespace margelo::nitro::camera { class HybridFrameSpec; }
 namespace margelo::nitro::rnfacedetection { struct Keypoint; }
 
 // Include C++ defined types
+#include "BoundingBox.hpp"
+#include "DetectedFace.hpp"
 #include "HybridFaceDetectionSpec.hpp"
 #include "Keypoint.hpp"
 #include <NitroModules/Result.hpp>

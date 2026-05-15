@@ -27,7 +27,7 @@ class HybridFaceDetection: HybridFaceDetectionSpec {
     let options = FaceDetectorOptions()
     options.baseOptions.modelAssetPath = modelPath
     options.runningMode = .video
-    options.minDetectionConfidence = 0.5
+    options.minDetectionConfidence = 0.8
     options.minSuppressionThreshold = 0.5
 
     let faceDetector = try FaceDetector(options: options)
@@ -35,7 +35,7 @@ class HybridFaceDetection: HybridFaceDetectionSpec {
     return faceDetector
   }
 
-  func call(frame: any HybridFrameSpec) throws -> [[Keypoint]] {
+  func call(frame: any HybridFrameSpec) throws -> [DetectedFace] {
     guard let frame = frame as? any NativeFrame else {
       NSLog("[rn-face-detection] Frame cast to NativeFrame failed")
       return []
@@ -54,7 +54,7 @@ class HybridFaceDetection: HybridFaceDetectionSpec {
         timestampInMilliseconds: timestampMs
       )
 
-      var faces: [[Keypoint]] = []
+      var faces: [DetectedFace] = []
 
       for detection in result.detections {
         var keypoints: [Keypoint] = []
@@ -68,7 +68,22 @@ class HybridFaceDetection: HybridFaceDetectionSpec {
           )
         }
 
-        faces.append(keypoints)
+        let bbox = detection.boundingBox
+        let boundingBox = BoundingBox(
+          originX: Double(bbox.origin.x),
+          originY: Double(bbox.origin.y),
+          width: Double(bbox.size.width),
+          height: Double(bbox.size.height),
+        )
+        let score = Double(detection.categories.first?.score ?? 0)
+
+        faces.append(
+          DetectedFace(
+            boundingBox: boundingBox,
+            score: score,
+            keypoints: keypoints,
+          )
+        )
       }
 
       return faces

@@ -31,7 +31,7 @@ abstract class HybridFaceDetectionSpec: HybridObject() {
   // Methods
   @DoNotStrip
   @Keep
-  abstract fun call(frame: com.margelo.nitro.camera.HybridFrameSpec): Array<Array<Keypoint>>
+  abstract fun call(frame: com.margelo.nitro.camera.HybridFrameSpec): Array<DetectedFace>
 
   // Default implementation of `HybridObject.toString()`
   override fun toString(): String {

@@ -14,7 +14,7 @@ public protocol HybridFaceDetectionSpec_protocol: HybridObject {
   
 
   // Methods
-  func call(frame: (any HybridFrameSpec)) throws -> [[Keypoint]]
+  func call(frame: (any HybridFrameSpec)) throws -> [DetectedFace]
 }
 
 public extension HybridFaceDetectionSpec_protocol {

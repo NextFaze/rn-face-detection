@@ -7,13 +7,21 @@
 
 #include "JHybridFaceDetectionSpec.hpp"
 
+// Forward declaration of `DetectedFace` to properly resolve imports.
+namespace margelo::nitro::rnfacedetection { struct DetectedFace; }
+// Forward declaration of `BoundingBox` to properly resolve imports.
+namespace margelo::nitro::rnfacedetection { struct BoundingBox; }
 // Forward declaration of `Keypoint` to properly resolve imports.
 namespace margelo::nitro::rnfacedetection { struct Keypoint; }
 // Forward declaration of `HybridFrameSpec` to properly resolve imports.
 namespace margelo::nitro::camera { class HybridFrameSpec; }
 
-#include "Keypoint.hpp"
+#include "DetectedFace.hpp"
 #include <vector>
+#include "JDetectedFace.hpp"
+#include "BoundingBox.hpp"
+#include "JBoundingBox.hpp"
+#include "Keypoint.hpp"
 #include "JKeypoint.hpp"
 #include <memory>
 #include <VisionCamera/HybridFrameSpec.hpp>
@@ -52,25 +60,16 @@ namespace margelo::nitro::rnfacedetection {
   
 
   // Methods
-  std::vector<std::vector<Keypoint>> JHybridFaceDetectionSpec::call(const std::shared_ptr<margelo::nitro::camera::HybridFrameSpec>& frame) {
-    static const auto method = _javaPart->javaClassStatic()->getMethod<jni::local_ref<jni::JArrayClass<jni::JArrayClass<JKeypoint>>>(jni::alias_ref<margelo::nitro::camera::JHybridFrameSpec::JavaPart> /* frame */)>("call");
+  std::vector<DetectedFace> JHybridFaceDetectionSpec::call(const std::shared_ptr<margelo::nitro::camera::HybridFrameSpec>& frame) {
+    static const auto method = _javaPart->javaClassStatic()->getMethod<jni::local_ref<jni::JArrayClass<JDetectedFace>>(jni::alias_ref<margelo::nitro::camera::JHybridFrameSpec::JavaPart> /* frame */)>("call");
     auto __result = method(_javaPart, std::dynamic_pointer_cast<margelo::nitro::camera::JHybridFrameSpec>(frame)->getJavaPart());
     return [&](auto&& __input) {
       size_t __size = __input->size();
-      std::vector<std::vector<Keypoint>> __vector;
+      std::vector<DetectedFace> __vector;
       __vector.reserve(__size);
       for (size_t __i = 0; __i < __size; __i++) {
         auto __element = __input->getElement(__i);
-        __vector.push_back([&](auto&& __input) {
-          size_t __size = __input->size();
-          std::vector<Keypoint> __vector;
-          __vector.reserve(__size);
-          for (size_t __i = 0; __i < __size; __i++) {
-            auto __element = __input->getElement(__i);
-            __vector.push_back(__element->toCpp());
-          }
-          return __vector;
-        }(__element));
+        __vector.push_back(__element->toCpp());
       }
       return __vector;
     }(__result);

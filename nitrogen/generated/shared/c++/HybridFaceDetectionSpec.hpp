@@ -13,12 +13,12 @@
 #error NitroModules cannot be found! Are you sure you installed NitroModules properly?
 #endif
 
-// Forward declaration of `Keypoint` to properly resolve imports.
-namespace margelo::nitro::rnfacedetection { struct Keypoint; }
+// Forward declaration of `DetectedFace` to properly resolve imports.
+namespace margelo::nitro::rnfacedetection { struct DetectedFace; }
 // Forward declaration of `HybridFrameSpec` to properly resolve imports.
 namespace margelo::nitro::camera { class HybridFrameSpec; }
 
-#include "Keypoint.hpp"
+#include "DetectedFace.hpp"
 #include <vector>
 #include <memory>
 #include <VisionCamera/HybridFrameSpec.hpp>
@@ -54,7 +54,7 @@ namespace margelo::nitro::rnfacedetection {
 
     public:
       // Methods
-      virtual std::vector<std::vector<Keypoint>> call(const std::shared_ptr<margelo::nitro::camera::HybridFrameSpec>& frame) = 0;
+      virtual std::vector<DetectedFace> call(const std::shared_ptr<margelo::nitro::camera::HybridFrameSpec>& frame) = 0;
 
     protected:
       // Hybrid Setup
