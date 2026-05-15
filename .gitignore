@@ -82,5 +82,5 @@ lib/
 .cache
 *.tsbuildinfo
 
-ios/
-android/
+example-app/ios/
+example-app/android/
