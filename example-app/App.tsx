@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo } from 'react'
-import { DetectedFace, RNFaceDetection } from 'rn-face-detection'
+import { DetectedFace, RNFaceDetectionPlugin } from 'rn-face-detection'
 import { createSynchronizable } from 'react-native-worklets'
 import { SkiaCamera } from 'react-native-vision-camera-skia'
 import { useAsyncRunner, useCameraPermission } from 'react-native-vision-camera'
@@ -44,7 +44,7 @@ export default function App() {
         const wasHandled = asyncRunner.runAsync(() => {
           'worklet'
           try {
-            const nextFaces: DetectedFace[] = RNFaceDetection.call(frame)
+            const nextFaces: DetectedFace[] = RNFaceDetectionPlugin.call(frame)
             latestFaces.setBlocking(nextFaces)
           } finally {
             frame.dispose()

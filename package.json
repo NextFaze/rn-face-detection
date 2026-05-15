@@ -26,6 +26,7 @@
     "ios/**/*.mm",
     "ios/**/*.cpp",
     "ios/**/*.swift",
+    "ios/Resources/**/*",
     "app.plugin.js",
     "nitro.json",
     "*.podspec",
