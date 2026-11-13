@@ -17,6 +17,10 @@
       "ios": {
         "language": "swift",
         "implementationClassName": "HybridFaceDetection"
+      },
+      "android": {
+        "language": "kotlin",
+        "implementationClassName": "HybridFaceDetection"
       }
     }
   },

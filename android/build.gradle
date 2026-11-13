@@ -138,5 +138,11 @@ dependencies {
 
   // Add a dependency on NitroModules
   implementation project(":react-native-nitro-modules")
+
+  // Vision Camera Frame / NativeFrame types used by HybridFaceDetection
+  implementation project(":react-native-vision-camera")
+
+  // MediaPipe Face Detector
+  implementation "com.google.mediapipe:tasks-vision:0.10.29"
 }
 
