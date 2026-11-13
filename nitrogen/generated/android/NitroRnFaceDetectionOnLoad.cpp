@@ -16,6 +16,7 @@
 #include <NitroModules/HybridObjectRegistry.hpp>
 
 #include "JHybridFaceDetectionSpec.hpp"
+#include <NitroModules/DefaultConstructableObject.hpp>
 
 namespace margelo::nitro::rnfacedetection {
 
@@ -25,7 +26,14 @@ int initialize(JavaVM* vm) {
   });
 }
 
-
+struct JHybridFaceDetectionSpecImpl: public jni::JavaClass<JHybridFaceDetectionSpecImpl, JHybridFaceDetectionSpec::JavaPart> {
+  static constexpr auto kJavaDescriptor = "Lcom/margelo/nitro/rnfacedetection/HybridFaceDetection;";
+  static std::shared_ptr<JHybridFaceDetectionSpec> create() {
+    static const auto constructorFn = javaClassStatic()->getConstructor<JHybridFaceDetectionSpecImpl::javaobject()>();
+    jni::local_ref<JHybridFaceDetectionSpec::JavaPart> javaPart = javaClassStatic()->newObject(constructorFn);
+    return javaPart->getJHybridFaceDetectionSpec();
+  }
+};
 
 void registerAllNatives() {
   using namespace margelo::nitro;
@@ -35,7 +43,12 @@ void registerAllNatives() {
   margelo::nitro::rnfacedetection::JHybridFaceDetectionSpec::CxxPart::registerNatives();
 
   // Register Nitro Hybrid Objects
-  
+  HybridObjectRegistry::registerHybridObjectConstructor(
+    "FaceDetection",
+    []() -> std::shared_ptr<HybridObject> {
+      return JHybridFaceDetectionSpecImpl::create();
+    }
+  );
 }
 
 } // namespace margelo::nitro::rnfacedetection

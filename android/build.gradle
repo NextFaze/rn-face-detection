@@ -138,5 +138,14 @@ dependencies {
 
   // Add a dependency on NitroModules
   implementation project(":react-native-nitro-modules")
+
+  // Vision Camera Frame / NativeFrame types used by HybridFaceDetection
+  implementation project(":react-native-vision-camera")
+
+  // ImageProxy is only implementation-scoped in Vision Camera, so depend on CameraX directly
+  implementation "androidx.camera:camera-core:1.7.0-alpha03"
+
+  // MediaPipe Face Detector
+  implementation "com.google.mediapipe:tasks-vision:0.10.29"
 }
 
